@@ -1,7 +1,6 @@
 AMR Storm Surge Research
 ========================
 Andrew Kaluzny <andrew.kaluzny@columbia.edu>
-// to be converted to html with asciidoc
 
 == Notes/Ideas
 
