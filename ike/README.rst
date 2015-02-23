@@ -4,6 +4,8 @@
 Basic Example of Storm Surge from Hurricane Ike
 ===============================================
 
+(this is a copy of the README from the example as included in clawpack)
+
 This example contains the data and setup for running a storm surge forecast for
 Hurricane Ike.  The example can be run via::
 
