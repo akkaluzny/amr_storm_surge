@@ -1,0 +1,31 @@
+AMR Storm Surge Research
+========================
+Andrew Kaluzny <andrew.kaluzny@columbia.edu>
+// to be converted to html with asciidoc
+
+== Notes/Ideas
+
+.Possible criteria to consider:
+* basic thresholds on components of the solution and storm
+* distances (from the storm eye, or perhaps some other feauture)
+* energy in a cell
+* gradients or simply differences across cells
+* intersections of other criteria (e.g. distance d from the eye and wind speed > w, etc)
+* linear or non-linear combinations of other criteria
+** would need some idea of how to limit this space
+
+
+.Choosing criteria thresholds:
+* for a single criteria, could do something like a binary search until the performance is optimized while keeping the soln good enough
+* choose thresholds that seem to flag cells similarly to some reference
+** need a way to get a good reference (i.e. a strong idea of which cells should/need to be refined)
+
+
+.Measures of solution quality:
+* Compare to a reference solution at gauges (either from geoclaw or some other simulation)
+** What about refinement at those gauges? Could force refinement, otherwise might favor criteria that refine at the gauges
+
+
+.Measures of performance:
+* Number of cells (advantage: independent of computing power)
+* cpu time (advantage: incorporates the performance of the criteria themselves)
