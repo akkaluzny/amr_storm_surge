@@ -21,6 +21,10 @@ ike_landfall = datetime.datetime(2008,9,13 - 1,7) - datetime.datetime(2008,1,1,0
 days2seconds = lambda days: days * 60.0**2 * 24.0
 seconds2days = lambda seconds: seconds / (60.0**2 * 24.0)
 
+# the working directory may not be the original directory (which has the storm file, etc)
+# it will be correct when setrun is imported, so we fix that directory at that point
+base_dir = os.getcwd()
+
 #------------------------------
 def setrun(claw_pkg='geoclaw'):
 #------------------------------
@@ -277,7 +281,7 @@ def setrun(claw_pkg='geoclaw'):
     amrdata = rundata.amrdata
 
     # max number of refinement levels:
-    amrdata.amr_levels_max = 4
+    amrdata.amr_levels_max = 6
 
     # List of refinement ratios at each level (length at least mxnest-1)
     amrdata.refinement_ratios_x = [2,2,2,6,16]
@@ -393,7 +397,7 @@ def setgeo(rundata):
     # See regions for control over these regions, need better bathy data for the
     # smaller domains
     topo_data.topofiles.append([3, 1, 5, rundata.clawdata.t0, rundata.clawdata.tfinal, 
-                              'gulf_caribbean.tt3'])
+                              os.path.join(base_dir,'gulf_caribbean.tt3')])
     # == setdtopo.data values ==
     dtopo_data = rundata.dtopo_data
     dtopo_data.dtopofiles = []
@@ -439,7 +443,7 @@ def set_storm(rundata):
     data.landfall = days2seconds(ike_landfall.days) + ike_landfall.seconds
 
     # Storm type 2 - Idealized storm track
-    data.storm_file = os.path.expandvars(os.path.join(os.getcwd(),'ike.storm'))
+    data.storm_file = os.path.expandvars(os.path.join(base_dir,'ike.storm'))
 
     return data
 
